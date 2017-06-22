@@ -1,6 +1,8 @@
 # smartVienna
 Statistics tool for the vienna public transport system
 
+With this program it is possible to track statios of the vienna public transport system.
+
 ---------------------------------------------------------
 This system consists of 3 different parts:
 
