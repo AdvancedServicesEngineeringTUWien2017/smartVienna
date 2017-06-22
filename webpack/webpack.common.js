@@ -47,12 +47,7 @@ module.exports = function (options) {
                 },
                 {
                     test: /\.css$/,
-                    loaders: ['to-string-loader', 'css-loader'],
-                    exclude: /(vendor\.css|global\.css)/
-                },
-                {
-                    test: /(vendor\.css|global\.css)/,
-                    loaders: ['style-loader', 'css-loader']
+                    loaders: ['style-loader', 'css-loader','postcss-loader']
                 },
                 {
                     test: /\.(jpe?g|png|gif|svg|woff|woff2|ttf|eot)$/i,
@@ -97,7 +92,6 @@ module.exports = function (options) {
                 { from: './node_modules/swagger-ui/dist', to: 'swagger-ui/dist' },
                 { from: './src/main/webapp/swagger-ui/', to: 'swagger-ui' },
                 { from: './src/main/webapp/favicon.ico', to: 'favicon.ico' },
-                { from: './src/main/webapp/images/wl.png', to : 'wl.png' },
                 { from: './src/main/webapp/robots.txt', to: 'robots.txt' },
                 { from: './src/main/webapp/i18n', to: 'i18n' }
             ]),
