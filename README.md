@@ -4,6 +4,13 @@ Statistics tool for the vienna public transport system
 With this program it is possible to track statios of the vienna public transport system.
 
 ---------------------------------------------------------
+## Design
+
+The main goal is to implement a platform which allows to analyze the delays of a stations of the Vienna public transport system. Therefore, the real-time data API from the Vienna public transport is used to fetch the data with sensors and publish the data to a message broker, i.e. rabbitMQ. In this scenario, the sensors run a lightweight Java application which pulls the data from the API and publish it to the message broker. Such sensors could run on a Raspberry PI or, due to simplicity, on a local client. The analyzing and processing happens in a sping boot application which is responsible for analyzing, storing and presenting the data for the end customer. 
+
+The data for the station and the real time api of the Wiener Linien can be found here:
+https://www.data.gv.at/katalog/dataset/add66f20-d033-4eee-b9a0-47019828e698
+
 This system consists of 3 different parts:
 
 1. Sensor program
