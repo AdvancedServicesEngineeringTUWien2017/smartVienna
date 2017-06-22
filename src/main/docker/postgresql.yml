@@ -1,0 +1,11 @@
+version: '2'
+services:
+    smartvienna-postgresql:
+        image: postgres:9.6.2
+        # volumes:
+        #     - ~/volumes/jhipster/smartVienna/postgresql/:/var/lib/postgresql/
+        environment:
+            - POSTGRES_USER=smartVienna
+            - POSTGRES_PASSWORD=
+        ports:
+            - 5432:5432

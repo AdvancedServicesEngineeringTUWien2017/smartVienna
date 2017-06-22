@@ -1,0 +1,81 @@
+<div class="row" style="font-size: 0.8em">
+    <div class="col-md-6">
+            <h2>All Stations of Vienna</h2>
+            <p-messages [(value)]="msgs"></p-messages>
+
+            <p-dataTable ng-show="station" [value]="stations" [rows]="10" [paginator]="true" [pageLinks]="3" [rowsPerPageOptions]="[5,10,20]">
+                <p-column field="name" header="Name (starts with)" [filter]="true" filterPlaceholder="Search"></p-column>
+                <p-column field="rbl" header="Rbl"></p-column>
+                <p-column field="interval" header="Interval"></p-column>
+                <p-column field="tracking" header="Tracking" [sortable]="true"></p-column>
+                <p-column styleClass="col-button">
+                    <ng-template let-station="rowData" pTemplate="body">
+                        <button [hidden]="station.tracking" type="button" (click)="showDialog(station)" icon="fa-podcast">Track Stations</button>
+
+                    </ng-template>
+                </p-column>
+                <p-column styleClass="col-button">
+                    <ng-template let-station="rowData" pTemplate="body">
+                        <button [hidden]="!station.tracking" type="button" (click)="showUpdateDialog(station)" icon="fa-podcast">Update Interval</button>
+                    </ng-template>
+                </p-column>
+                <p-column styleClass="col-button">
+                    <ng-template let-station="rowData" pTemplate="body">
+                        <button [hidden]="!station.tracking" type="button" (click)="showTimes(station)" icon="fa-podcast">
+
+                            Show Times</button>
+                    </ng-template>
+                </p-column>
+            </p-dataTable>
+    </div>
+    <div class="col-md-6">
+        <h2>Station Times and delays</h2>
+
+        <h3>Statistics</h3>
+
+
+
+        <p-dataTable [value]="statistics" expandableRows="true">
+            <p-column expander="true" styleClass="col-icon"></p-column>
+            <p-column field="name" header="Name"></p-column>
+            <ng-template let-stat pTemplate="rowexpansion">
+                <div class="ui-grid ui-grid-responsive ui-fluid" style="font-size:16px;padding:20px">
+                    <div class="ui-grid-row">
+                        Overall Delay: {{stat.statistics.overallDelay/1000}} seconds<br/>
+                        Average Delay: {{stat.statistics.averageDelay/1000}} seconds<br/>
+                        Highest Delay: {{stat.statistics.highestDelay/1000}} seconds<br/>
+                        Shortest Delay: {{stat.statistics.shortestDelay/1000}} seconds<br/>
+                    </div>
+                </div>
+            </ng-template>
+        </p-dataTable>
+        <h3>Schedule times of the station</h3>
+            <p-dataTable [value]="stationTimes" [rows]="10" [paginator]="true" [pageLinks]="3" [rowsPerPageOptions]="[5,10,20]">
+                <p-column header="Time Planned" [sortable]="true">
+                    <ng-template let-data="rowData" pTemplate="body">
+                        <span>{{data.timePlanned | date: 'dd.MM.yy HH:mm:ss'}}</span>
+                    </ng-template>
+                </p-column>
+                <p-column header="Time Real">
+                    <ng-template let-data="rowData" pTemplate="body">
+                        <span>{{data.timeReal | date: 'dd.MM.yy HH:mm:ss'}}</span>
+                    </ng-template>
+                </p-column>
+                <p-column field="station.viennaLine.name" header="Line" [sortable]="true"></p-column>
+                <p-column field="delayInSeconds" header="Delay"></p-column>
+                <p-column field="towards" header="Towards"></p-column>
+            </p-dataTable>
+    </div>
+</div>
+
+
+<p-dialog header="Track a station" [(visible)]="display">
+    Interval (in milliseconds):<br/>
+    <input type="text" pInputText [(ngModel)]="interval"/>
+    <button pButton type="button" (click)="selectStationTracking()" label="Track Station"></button>
+</p-dialog>
+<p-dialog header="Update the interval" [(visible)]="displayUpdateDialog">
+    Update Interval (in milliseconds) If you type 0 the station will be untracked:<br/>
+    <input type="text" pInputText [(ngModel)]="interval"/>
+    <button pButton type="button" (click)="selectStationUpdate()" label="Track Station"></button>
+</p-dialog>
