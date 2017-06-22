@@ -36,7 +36,7 @@
                     <manifest>
                         <addClasspath>true</addClasspath>
                         <classpathPrefix>lib/</classpathPrefix>
-                        <mainClass>src.main.java.Main</mainClass>
+                        <mainClass>Main</mainClass>
                     </manifest>
                 </archive>
             </configuration>
