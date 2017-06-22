@@ -164,11 +164,11 @@ public class SmartViennaService {
 
     public List<Stop> readCSV()
     {
-        File file = null;
-        File stations = null;
+        InputStream file = null;
+        InputStream stations = null;
         try {
-            file = new ClassPathResource("wienerlinien-ogd-steige.csv").getFile();
-            stations = new ClassPathResource("wienerlinien-ogd-haltestellen.csv").getFile();
+            file = new ClassPathResource("wienerlinien-ogd-steige.csv").getInputStream();
+            stations = new ClassPathResource("wienerlinien-ogd-haltestellen.csv").getInputStream();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -177,7 +177,7 @@ public class SmartViennaService {
 
         List<Stop> stopList = new ArrayList<>();
         HashMap<String, String> t = new HashMap<>();
-        try (BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(file), "UTF-8"))) {
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(file, "UTF-8"))) {
 
             while ((line = br.readLine()) != null) {
 
@@ -193,7 +193,7 @@ public class SmartViennaService {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        try (BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(stations), "UTF-8"))) {
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(stations, "UTF-8"))) {
 
             while ((line = br.readLine()) != null) {
 
