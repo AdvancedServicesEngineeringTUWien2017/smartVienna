@@ -47,7 +47,12 @@ module.exports = function (options) {
                 },
                 {
                     test: /\.css$/,
-                    loaders: ['style-loader', 'css-loader','postcss-loader']
+                    loaders: ['to-string-loader', 'css-loader'],
+                    exclude: /(vendor\.css|global\.css)/
+                },
+                {
+                    test: /(vendor\.css|global\.css)/,
+                    loaders: ['style-loader', 'css-loader']
                 },
                 {
                     test: /\.(jpe?g|png|gif|svg|woff|woff2|ttf|eot)$/i,
