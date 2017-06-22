@@ -1,0 +1,23 @@
+# This is a sample build configuration for Java – Maven.
+# Check our guides at https://confluence.atlassian.com/x/zd-5Mw for more examples.
+# Only use spaces to indent your .yml configuration.
+# -----
+# You can specify a custom docker image from Docker Hub as your build environment.
+image: maven:3.3.9
+
+pipelines:
+  default:
+    - step:
+        script: # Modify the commands below to build your repository.
+          - apt-get update
+          - mvn -Pprod -DskipTests clean package 
+          - ls target
+          - scp -r target/smarttemp-0.0.1-SNAPSHOT.war ec2-user@ec2-54-201-136-143.us-west-2.compute.amazonaws.com:/home/ec2-user
+
+
+          #- apt-get -qq install git-ftp
+          #- ls target
+          #- git ftp push --user $FTP_USERNAME --passwd $FTP_PASSWORD ftp://YOUR_SERVER_ADDRESS/PATH_TO_WEBSITE/
+
+          #- ls
+          #- ls target
