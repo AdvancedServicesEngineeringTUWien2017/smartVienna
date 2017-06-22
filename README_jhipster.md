@@ -1,4 +1,5 @@
 # smartVienna
+<<<<<<< HEAD
 This application was generated using JHipster 4.2.0, you can find documentation and help at [https://jhipster.github.io/documentation-archive/v4.2.0](https://jhipster.github.io/documentation-archive/v4.2.0).
 
 ## Development
@@ -147,3 +148,6 @@ To configure CI for your project, run the ci-cd sub-generator (`yo jhipster:ci-c
 [Protractor]: https://angular.github.io/protractor/
 [Leaflet]: http://leafletjs.com/
 [DefinitelyTyped]: http://definitelytyped.org/
+=======
+Statistics tool for the vienna public transport system
+>>>>>>> 10239320d07bfc274f70ceaf227e41998ed7210d
