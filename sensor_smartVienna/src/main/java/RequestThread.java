@@ -34,7 +34,13 @@ public class RequestThread implements Runnable {
             System.out.println("track station with rbl " + rbl + " in interval of " + interval);
 
             String uri = System.getenv("CLOUDAMQP_URL");
-            if (uri == null) uri = "amqp://aeuvhavi:n5_ThNGJZ1GZ33gmBJAGglVUoYdvgk0x@orangutan.rmq.cloudamqp.com/aeuvhavi";
+            if (uri == null){
+                /*********************************/
+                //URI OF RABBITMQ CLOUD AMPQ
+                //Please insert here (or set as System variable)
+                /*********************************/
+                uri = "amqp://XXXX.rmq.cloudamqp.com/XXXX";
+            }
 
             ConnectionFactory factory = new ConnectionFactory();
             factory.setUri(uri);
@@ -54,11 +60,18 @@ public class RequestThread implements Runnable {
 
             smartVienna.queueDeclare(queue, durable, exclusive, autoDelete, null);
 
+            /*********************************/
+            //API KEY OF WIENER LINIEN
+            //Please insert here
+            /*********************************/
+            String apiKey = "XXXX";
+
             //GET info from vienna public transport api
+
 
             boolean stop = false;
             while(!stop) {
-                JSONObject response = readJsonFromUrl("http://www.wienerlinien.at/ogd_realtime/monitor?rbl=" + rbl + "&activateTrafficInfo=stoerungkurz&activateTrafficInfo=stoerunglang&activateTrafficInfo=aufzugsinfo&sender=sXHtcQDfyhDUbYYJ");
+                JSONObject response = readJsonFromUrl("http://www.wienerlinien.at/ogd_realtime/monitor?rbl=" + rbl + "&activateTrafficInfo=stoerungkurz&activateTrafficInfo=stoerunglang&activateTrafficInfo=aufzugsinfo&sender=" + apiKey);
                 System.out.println(response.toString());
                 JSONObject data = (JSONObject) response.get("data");
                 JSONArray monitors = (JSONArray) data.get("monitors");

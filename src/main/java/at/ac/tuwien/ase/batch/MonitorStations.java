@@ -47,7 +47,13 @@ public class MonitorStations {
 
         try {
             String uri = System.getenv("CLOUDAMQP_URL");
-            if (uri == null) uri = "amqp://aeuvhavi:n5_ThNGJZ1GZ33gmBJAGglVUoYdvgk0x@orangutan.rmq.cloudamqp.com/aeuvhavi";
+            if (uri == null){
+                /*********************************/
+                //URI OF RABBITMQ CLOUD AMPQ
+                //Please insert here (or set as System variable)
+                /*********************************/
+                uri = "amqp://XXXX.rmq.cloudamqp.com/XXXX";
+            }
             connectionFactory = new ConnectionFactory();
 
             connectionFactory.setUri(uri);
