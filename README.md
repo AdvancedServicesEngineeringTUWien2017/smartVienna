@@ -23,6 +23,9 @@ In order to emulate a IoT sensor a maven project is responsible for accessing th
 
 This program can be found in /sensor_smartVienna
 
+Please insert the URI of rabbitMQ CloudAMQP in Main.java and in RequestThread.java (see java comments).
+Please also insert a valid Wiener Linien API Key in the RequestThread.java (see java comments).
+
 Build and start this program:
 
 1. mvn install
@@ -35,6 +38,7 @@ The RabbitMQ as a Service CloudAMQP offers a free MOM instance. The sensor progr
 ## SmartVienna Application
 
 This application runs on a ec2 instance.
+Please insert the URI of rabbitMQ CloudAMQP in MonitorStations.java (see comments).
 
 ### Frontend
 
